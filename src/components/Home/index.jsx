@@ -1,10 +1,12 @@
+import PurseList from "../Purse/List"
 
 
 const Home = () => {
   return (
-    <div>
+    <>
       Home
-    </div>
+      <PurseList />
+    </>
   )
 }
 
