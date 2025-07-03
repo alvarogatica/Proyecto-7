@@ -1,32 +1,36 @@
 import { useReducer } from "react";
 import PurseContext from "./PurseContext";
 import PurseReducer from "./PurseReducer";
+import axiosClient from "../../config/axios";
 
 const PurseState = (props) => {
   const initialState = {
-    purses: [
-      {
-        id: 0,
-        name: "Louis Vuitton",
-        price: 1000,
-      },
-      {
-        id: 1,
-        name: "Miu Miu",
-        price: 800,
-      }
-    ],
+    purses: [],
   };
 
   const [globalState, dispatch] = useReducer(PurseReducer, initialState);
 
+  const getPurses = async () => {
+    try {
+      const res = await axiosClient.get("/purses");
+      console.log(res);
+      dispatch({
+        type: "Obtener_Carteras",
+        payload: res.data.purses,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <PurseContext.Provider
       value={{
-        purses: globalState.purses
+        purses: globalState.purses,
+        getPurses
       }}
     >
-        {props.children}
+      {props.children}
     </PurseContext.Provider>
   );
 };
