@@ -7,13 +7,13 @@ const Home = () => {
         <h1 className="text-5xl font-extrabold text-gray-900">
           urdupes.cl
         </h1>
-        <P className="mt-3 mx-auto text-gray-500">
+        <p className="mt-3 mx-auto text-gray-500">
           Tu tienda de accesorios femeninos
-        </P>
+        </p>
         <section className="mt-16 mx-auto max-w-md">
           <article>
             <Link to="/purses" className="btn-product">
-              
+              Ver productos
             </Link>
           </article>
         </section>
