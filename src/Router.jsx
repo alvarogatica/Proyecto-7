@@ -11,21 +11,19 @@ import UserState from "./contexts/user/UserState";
 const Router = () => {
   return (
     <>
-      <UserState>
-        <PurseState>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Layout />}>
-                <Route index element={<Home />} />
-                <Route path="register" element={<Register />} />
-                <Route path="login" element={<Login />} />
-                <Route path="purses" element={<PurseList />} />
-                <Route path="purses/:id" element={<SinglePurse />} />
-              </Route>
-            </Routes>
-          </BrowserRouter>
-        </PurseState>
-      </UserState>
+      <PurseState>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Home />} />
+              <Route path="register" element={<Register />} />
+              <Route path="login" element={<Login />} />
+              <Route path="purses" element={<PurseList />} />
+              <Route path="purses/:id" element={<SinglePurse />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </PurseState>
     </>
   );
 };
