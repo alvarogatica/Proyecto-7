@@ -32,6 +32,12 @@ const UserState = (props) => {
     }
   };
 
+  const updateUser = async (formData) => {
+    await axiosClient.put("/users/update", formData, {
+      withCredentials: true,
+  })
+}
+
   const loginUser = async (form) => {
     try {
       const res = await axiosClient.post("/users/login", form, {
@@ -87,6 +93,7 @@ const UserState = (props) => {
         loginUser,
         verifyUser,
         logoutUser,
+        updateUser,
       }}
     >
       {props.children}
