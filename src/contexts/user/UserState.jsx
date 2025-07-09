@@ -23,7 +23,7 @@ const UserState = (props) => {
       const res = await axiosClient.post("/users/create", form);
       console.log(res);
       dispatch({
-        type: "Registro_Existoso",
+        type: "Registro_Exitoso",
         payload: res.data,
       });
       return true;
@@ -34,24 +34,47 @@ const UserState = (props) => {
 
   const loginUser = async (form) => {
     try {
-      const res = await axiosClient.post("/users/login", form);
-      const token = res.data.token;
-
+      const res = await axiosClient.post("/users/login", form, {
+        withCredentials: true,
+      });
+      console.log(res);
       dispatch({
-        type: "Login_Existoso",
-        payload: token,
+        type: "Login_Exitoso",
       });
       return;
     } catch (error) {
-      console.log(error);
       return error.response.data.msg;
     }
   };
 
-  const logoutUser = async () => {
-    dispatch({
-      type: "Logout_Usuario",
-    });
+  const verifyUser = async () => {
+    try {
+      const res = await axiosClient.get("/users/verify-user", {
+        withCredentials: true,
+      });
+      console.log(res);
+      const userData = res.data.user;
+      dispatch({
+        type: "GET_USER_DATA",
+        payload: userData,
+      });
+    } catch (error) {
+      console.log(error);
+      return;
+    }
+  };
+
+  const logoutUser = async (navigate) => {
+    try {
+      await axiosClient.post("/users/logout", {}, { withCredentials: true });
+      dispatch({
+        type: "Logout_Exitoso",
+        payload: "Sesion cerrada exitosamente",
+      });
+      navigate("login");
+    } catch (error) {
+      console.log("Error cerrando sesion", error);
+    }
   };
 
   return (
@@ -61,6 +84,9 @@ const UserState = (props) => {
         cart: globalState.cart,
         authStatus: globalState.authStatus,
         registerUser,
+        loginUser,
+        verifyUser,
+        logoutUser,
       }}
     >
       {props.children}

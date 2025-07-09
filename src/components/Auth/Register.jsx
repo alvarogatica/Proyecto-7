@@ -108,7 +108,7 @@ const Register = () => {
             </div>
 
             <div>
-              <label htmlFor="password" className="form-label">
+              <label htmlFor="confirmPassword" className="form-label">
                 Confirma tu contrasena
               </label>
               <div className="mt-1">
@@ -116,7 +116,7 @@ const Register = () => {
                   onChange={(event) => {
                     handleChange(event);
                   }}
-                  name="confirmarpassword"
+                  name="confirmPassword"
                   type="password"
                   required
                   className="form-input"
