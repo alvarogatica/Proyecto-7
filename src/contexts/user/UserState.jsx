@@ -11,6 +11,7 @@ const UserState = (props) => {
       country: "",
       address: "",
       zipcode: 0,
+      phone: "",
     },
     cart: [],
     authStatus: false,

@@ -8,13 +8,14 @@ export default function Profile() {
 
   const { updateUser } = userCtx;
 
-  const { username, email, country, address, zipcode } =
+  const { username, email, country, address, phone, zipcode } =
     userCtx.currentUser;
 
   const [userForm, setUserForm] = useState({
     username: "",
     country: "",
     address: "",
+    phone: "",
     zipcode: "",
   });
 
@@ -25,6 +26,7 @@ export default function Profile() {
         username,
         country,
         address,
+        phone,
         zipcode,
       });
     };
@@ -98,6 +100,21 @@ export default function Profile() {
                         type="text"
                         name="country"
                         value={userForm.country}
+                        onChange={(e) => {
+                          handleChange(e);
+                        }}
+                        className="form-input"
+                      />
+                    </div>
+
+                    <div className="col-span-4 sm:col-span-1">
+                      <label className="form-label">
+                        <span>Tu número de teléfono</span>
+                      </label>
+                      <input
+                        type="tel"
+                        name="phone"
+                        value={userForm.phone}
                         onChange={(e) => {
                           handleChange(e);
                         }}
