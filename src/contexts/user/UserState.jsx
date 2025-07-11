@@ -113,13 +113,15 @@ const UserState = (props) => {
 
   const getCheckoutSession = async () => {
     try {
-      const res = await axiosClient.get("/carts/checkout-session", { withCredentials: true });
+      const res = await axiosClient.get("/carts/create-checkout-session", { withCredentials: true });
+      console.log("Respuesta del back: ", res.data)
       dispatch({
         type: "GET_CHECKOUT_SESSION",
         payload: res.data.session_url,
       });
     } catch (error) {
-      console.log("Error fetching checkout session", error);
+      console.log("Error getcheckoutsession: ", error.response);
+      alert("hubo un error: " + error?.response?.status)
       return;
     }
   }

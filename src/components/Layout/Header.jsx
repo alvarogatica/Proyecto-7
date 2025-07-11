@@ -63,7 +63,7 @@ export default function Header() {
                   />
                 </svg>
               </Link>
-              <Link to="/carrito" className="btn-cart">
+              <Link to="/checkout-session" className="btn-cart">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5"
