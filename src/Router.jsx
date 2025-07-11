@@ -10,6 +10,9 @@ import UserState from "./contexts/user/UserState";
 import AuthRoute from "./routes/Auth";
 import PrivateRoute from "./routes/Private";
 import Profile from "./components/Profile";
+import SuccessPage from "./components/SuccessPage";
+import CancelPage from "./components/CancelPage";
+import Checkout from "./components/Checkout";
 
 const Router = () => {
   return (
@@ -26,8 +29,14 @@ const Router = () => {
                   path="perfil"
                   element={<PrivateRoute component={Profile} />}
                 />
+                <Route
+                  path="carrito"
+                  element={<PrivateRoute component={Checkout} />}
+                />
                 <Route path="purses" element={<PurseList />} />
-                <Route path="purses/:id" element={<SinglePurse />} />
+                <Route path="purses/:slug" element={<SinglePurse />} />
+                <Route path="success" element={<SuccessPage />} />
+                <Route path="cancel" element={<CancelPage />} />
               </Route>
             </Routes>
           </BrowserRouter>

@@ -23,6 +23,21 @@ const UserReducer = (globalState, action) => {
         authStatus: false,
         mensaje: action.payload,
       };
+    case "GET_CART":
+      return {
+        ...globalState,
+        cart: action.payload,
+      };
+    case "GET_CHECKOUT_SESSION":
+      return {
+        ...globalState,
+        sessionURL: action.payload,
+      };
+    case "CHANGE_STATUS_LOADING":
+      return {
+        ...globalState,
+        globalLoading: action.payload,
+      };
     default:
       return globalState;
   }

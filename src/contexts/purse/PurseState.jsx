@@ -6,6 +6,15 @@ import axiosClient from "../../config/axios";
 const PurseState = (props) => {
   const initialState = {
     purses: [],
+    currentPurse: {
+      _id: null,
+      idProd: "",
+      name: "",
+      img: "",
+      price: "",
+      description: "",
+      slug: "",
+    }
   };
 
   const [globalState, dispatch] = useReducer(PurseReducer, initialState);
@@ -13,7 +22,6 @@ const PurseState = (props) => {
   const getPurses = async () => {
     try {
       const res = await axiosClient.get("/purses");
-      console.log(res);
       dispatch({
         type: "Obtener_Carteras",
         payload: res.data.purses,
@@ -23,11 +31,20 @@ const PurseState = (props) => {
     }
   };
 
+  const setCurrentPurse = (purseData) => {
+    dispatch({
+      type: "OBTENER_CARTERA",
+      payload: purseData,
+    })
+  }
+
   return (
     <PurseContext.Provider
       value={{
         purses: globalState.purses,
-        getPurses
+        currentPurse: globalState.currentPurse,
+        getPurses,
+        setCurrentPurse,
       }}
     >
       {props.children}

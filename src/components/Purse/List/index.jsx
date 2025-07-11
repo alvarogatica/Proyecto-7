@@ -19,7 +19,7 @@ const PurseList = () => {
             return (
               <div key={purse._id} className="border flex flex-col">
                 <div className="bg-gray-200">
-                  <Link to={`/purses/${purse._id}`} state={{ purse }}>
+                  <Link to={`/purses/${purse.slug}`} state={{ purse }}>
                     <img
                       src={purse.img}
                       alt={purse.description}
@@ -33,7 +33,7 @@ const PurseList = () => {
                   </h3>
                   <p className="text-gray-500 pb-8">{purse.description}</p>
                   <Link
-                    to={`/purses/${purse._id}`}
+                    to={`/purses/${purse.slug}`}
                     state={{ purse }}
                     className="btn-product"
                   >

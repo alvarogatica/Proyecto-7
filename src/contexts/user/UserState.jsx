@@ -1,6 +1,6 @@
 import { useReducer } from "react";
-import UserContext from "./UserContext";
 import axiosClient from "../../config/axios";
+import UserContext from "./UserContext";
 import UserReducer from "./UserReducer";
 
 const UserState = (props) => {
@@ -13,8 +13,10 @@ const UserState = (props) => {
       zipcode: 0,
       phone: "",
     },
-    cart: [],
     authStatus: false,
+    cart: [],
+    sessionURL: null,
+    globalLoading: false,
   };
 
   const [globalState, dispatch] = useReducer(UserReducer, initialState);
@@ -84,17 +86,68 @@ const UserState = (props) => {
     }
   };
 
+  const editCart = async (data) => {
+    try {
+      const res = await axiosClient.put("/carts/edit-cart", { products: data }, {withCredentials: true});
+
+      await getCart();
+      return res.data.msg;
+    } catch (error) {
+      console.log("Error editing cart", error);
+      return
+    }
+  }
+
+  const getCart = async () => {
+    try {
+      const res = await axiosClient.get("/carts/get-cart", { withCredentials: true });
+      dispatch({
+        type: "GET_CART",
+        payload: res.data.cart.products,
+      })
+    } catch (error) { 
+      console.log("Error fetching cart", error);
+      return;
+    }
+  }
+
+  const getCheckoutSession = async () => {
+    try {
+      const res = await axiosClient.get("/carts/checkout-session", { withCredentials: true });
+      dispatch({
+        type: "GET_CHECKOUT_SESSION",
+        payload: res.data.session_url,
+      });
+    } catch (error) {
+      console.log("Error fetching checkout session", error);
+      return;
+    }
+  }
+
+  const setLoading = (status) => {
+    dispatch({
+      type: "CHANGE_STATUS_LOADING",
+      payload: status,
+    })
+  }
+
   return (
     <UserContext.Provider
       value={{
         currentUser: globalState.currentUser,
         cart: globalState.cart,
         authStatus: globalState.authStatus,
+        globalLoading: globalState.globalLoading,
+        sessionURL: globalState.sessionURL,
         registerUser,
         loginUser,
         verifyUser,
         logoutUser,
         updateUser,
+        editCart,
+        getCart,
+        getCheckoutSession,
+        setLoading,
       }}
     >
       {props.children}
