@@ -57,4 +57,25 @@
   .footer-instagram-btn {
     @apply inline-flex items-center justify-center p-2 rounded-full bg-[#d9b8a6] text-gray-900 transition-transform duration-300 ease-in-out hover:bg-[#d4a798] hover:scale-110;
   }
+
+  /* NUEVAS CLASES para Checkout (+, -, eliminar) */
+
+  /* Botones para cantidad (+ / -) */
+  .btn-quantity {
+    @apply w-10 h-10 flex items-center justify-center rounded-full border border-gray-300 text-lg font-semibold text-gray-900 cursor-pointer transition-colors duration-300 ease-in-out;
+  }
+  .btn-quantity:hover {
+    @apply bg-gray-200;
+  }
+
+  /* Botón eliminar */
+  .btn-delete {
+    @apply ml-4 flex items-center gap-2 text-red-600 font-semibold cursor-pointer transition-colors duration-300 ease-in-out;
+  }
+  .btn-delete:hover {
+    @apply text-red-800;
+  }
+  .btn-delete svg {
+    @apply text-red-600;
+  }
 }
