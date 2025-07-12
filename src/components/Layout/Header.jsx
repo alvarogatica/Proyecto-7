@@ -36,8 +36,8 @@ export default function Header() {
       <nav className="flex justify-between mx-8 py-4">
         <ul className="flex items-center">
           <li className="hidden ml-10 text-neutral-100 md:block">
-            <Link to="/purses" className="font-medium">
-              Carteras
+            <Link to="/" className="font-medium">
+              urdupes.cl
             </Link>
           </li>
         </ul>
