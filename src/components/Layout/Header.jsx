@@ -1,6 +1,7 @@
-import { useContext, useEffect, useState, Fragment } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import UserContext from "../../contexts/user/UserContext";
+import { LogOut, ShoppingCart } from "lucide-react";
 
 export default function Header() {
   const {
@@ -32,47 +33,34 @@ export default function Header() {
   }, [cart]);
 
   return (
-    <header className="bg-green-600">
-      <nav className="flex justify-between mx-8 py-4">
+    <header className="bg-[#fdf9f4] shadow-md">
+      <nav className="flex justify-between items-center max-w-7xl mx-auto py-4 px-6">
         <ul className="flex items-center">
-          <li className="hidden ml-10 text-neutral-100 md:block">
-            <Link to="/" className="font-medium">
+          <li className="hidden md:block">
+            <Link to="/" className="text-gray-900 font-semibold text-2xl">
               urdupes.cl
             </Link>
           </li>
         </ul>
-        <section className="flex items-center justify-end">
+        <section className="flex items-center justify-end gap-4">
           {authStatus ? (
             <>
               <Link to="/perfil" className="btn-nav">
                 Perfil
               </Link>
-              <Link to="/" className="btn-nav" onClick={logoutUser}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M17 16l4-4m0 01-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                  />
-                </svg>
-              </Link>
-              <Link to="/checkout-session" className="btn-cart">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  viewBox=" 0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 7H19M7 13L5.4 5M19 21a1 1 0 11-2 0 1 1 0 012 0zm-10 0a1 1 0 11-2 0 1 1 0 012 0z" />
-                </svg>
-                <span className="btn-cart-quantity">{total}</span>
+              <button
+                onClick={logoutUser}
+                aria-label="Cerrar sesión"
+                className="btn-nav flex items-center gap-1"
+              >
+                <LogOut size={18} />
+                Salir
+              </button>
+              <Link to="/checkout-session" className="btn-cart relative flex items-center">
+                <ShoppingCart size={22} className="text-gray-700 hover:text-gray-900 transition-colors" />
+                <span className="btn-cart-quantity absolute -top-2 -right-2 bg-[#d9b8a6] text-gray-900 rounded-full px-1.5 text-xs font-semibold">
+                  {total}
+                </span>
               </Link>
             </>
           ) : (
@@ -81,7 +69,7 @@ export default function Header() {
                 Crear Cuenta
               </Link>
               <Link to="/login" className="btn-nav">
-                Iniciar Sesion
+                Iniciar Sesión
               </Link>
             </>
           )}
