@@ -14,7 +14,7 @@ const PurseState = (props) => {
       price: "",
       description: "",
       slug: "",
-    }
+    },
   };
 
   const [globalState, dispatch] = useReducer(PurseReducer, initialState);
@@ -35,8 +35,8 @@ const PurseState = (props) => {
     dispatch({
       type: "OBTENER_CARTERA",
       payload: purseData,
-    })
-  }
+    });
+  };
 
   return (
     <PurseContext.Provider

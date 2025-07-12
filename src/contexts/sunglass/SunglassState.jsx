@@ -1,11 +1,55 @@
-import React from 'react'
+import { useReducer } from "react";
+import SunglassContext from "./SunglassContext";
+import SunglassReducer from "./SunglassReducer";
+import axiosClient from "../../config/axios";
 
-const SunglassState = () => {
+const SunglassState = (props) => {
+  const initialState = {
+    sunglasses: [],
+    currentSunglass: {
+      _id: null,
+      idProd: "",
+      name: "",
+      img: "",
+      price: "",
+      description: "",
+      slug: "",
+    },
+  };
+
+  const [globalState, dispatch] = useReducer(SunglassReducer, initialState);
+
+  const getSunglass = async () => {
+    try {
+      const res = await axiosClient.get("/sunglasses");
+      dispatch({
+        type: "Obtener_Anteojos",
+        payload: res.data.sunglasses,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const setCurrentSunglass = (sunglassData) => {
+    dispatch({
+      type: "OBTENER_ANTEOJO",
+      payload: sunglassData,
+    });
+  };
+
   return (
-    <div>
-      
-    </div>
-  )
-}
+    <SunglassContext.Provider
+      value={{
+        sunglasses: globalState.sunglasses,
+        currentSunglass: globalState.currentSunglass,
+        getSunglass,
+        setCurrentSunglass,
+      }}
+    >
+      {props.children}
+    </SunglassContext.Provider>
+  );
+};
 
-export default SunglassState
+export default SunglassState;
