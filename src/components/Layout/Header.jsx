@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, Fragment } from "react";
 import { Link } from "react-router-dom";
+import { ShoppingBag, Glasses, Menu, X } from "lucide-react";
 import UserContext from "../../contexts/user/UserContext";
-import { LogOut, ShoppingCart } from "lucide-react";
 
 export default function Header() {
   const {
@@ -15,6 +15,7 @@ export default function Header() {
   } = useContext(UserContext);
 
   const [total, setTotal] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -33,47 +34,184 @@ export default function Header() {
   }, [cart]);
 
   return (
-    <header className="bg-[#fdf9f4] shadow-md">
-      <nav className="flex justify-between items-center max-w-7xl mx-auto py-4 px-6">
-        <ul className="flex items-center">
-          <li className="hidden md:block">
-            <Link to="/" className="text-gray-900 font-semibold text-2xl">
+    <header className="bg-[#fdf9f4]">
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center py-4">
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            <Link to="/" className="font-bold text-xl text-gray-900">
               urdupes.cl
             </Link>
-          </li>
-        </ul>
-        <section className="flex items-center justify-end gap-4">
-          {authStatus ? (
-            <>
-              <Link to="/perfil" className="btn-nav">
-                Perfil
-              </Link>
-              <button
-                onClick={logoutUser}
-                aria-label="Cerrar sesión"
-                className="btn-nav flex items-center gap-1"
-              >
-                <LogOut size={18} />
-                Salir
-              </button>
-              <Link to="/checkout-session" className="btn-cart relative flex items-center">
-                <ShoppingCart size={22} className="text-gray-700 hover:text-gray-900 transition-colors" />
-                <span className="btn-cart-quantity absolute -top-2 -right-2 bg-[#d9b8a6] text-gray-900 rounded-full px-1.5 text-xs font-semibold">
-                  {total}
-                </span>
-              </Link>
-            </>
-          ) : (
-            <>
-              <Link to="/register" className="btn-nav">
-                Crear Cuenta
-              </Link>
-              <Link to="/login" className="btn-nav">
-                Iniciar Sesión
-              </Link>
-            </>
-          )}
-        </section>
+          </div>
+
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center space-x-4">
+            <Link
+              to="/purses"
+              className="btn-nav inline-flex items-center gap-1"
+              aria-label="Ver carteras"
+            >
+              <ShoppingBag size={16} /> Carteras
+            </Link>
+            <Link
+              to="/sunglasses"
+              className="btn-nav inline-flex items-center gap-1"
+              aria-label="Ver anteojos"
+            >
+              <Glasses size={16} /> Anteojos
+            </Link>
+
+            {authStatus ? (
+              <>
+                <Link to="/perfil" className="btn-nav">
+                  Perfil
+                </Link>
+                <button
+                  onClick={logoutUser}
+                  className="btn-nav flex items-center"
+                  aria-label="Cerrar sesión"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5 mr-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                    />
+                  </svg>
+                  Salir
+                </button>
+                <Link to="/checkout-session" className="btn-cart relative">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 7H19M7 13L5.4 5M19 21a1 1 0 11-2 0 1 1 0 012 0zm-10 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                  </svg>
+                  <span className="btn-cart-quantity">{total}</span>
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link to="/register" className="btn-nav">
+                  Crear Cuenta
+                </Link>
+                <Link to="/login" className="btn-nav">
+                  Iniciar Sesión
+                </Link>
+              </>
+            )}
+          </div>
+
+          {/* Mobile menu button */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label="Abrir menú"
+              className="p-2 rounded-md text-gray-900 hover:bg-[#d4a798] transition-colors"
+            >
+              {menuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile menu */}
+        {menuOpen && (
+          <div className="md:hidden pb-4 space-y-4 border-t border-gray-300">
+            <Link
+              to="/purses"
+              className="btn-nav inline-flex items-center gap-2 w-full justify-center"
+              aria-label="Ver carteras"
+              onClick={() => setMenuOpen(false)}
+            >
+              <ShoppingBag size={18} /> Carteras
+            </Link>
+            <Link
+              to="/sunglasses"
+              className="btn-nav inline-flex items-center gap-2 w-full justify-center"
+              aria-label="Ver anteojos"
+              onClick={() => setMenuOpen(false)}
+            >
+              <Glasses size={18} /> Anteojos
+            </Link>
+
+            {authStatus ? (
+              <>
+                <Link
+                  to="/perfil"
+                  className="btn-nav w-full text-center"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Perfil
+                </Link>
+                <button
+                  onClick={() => {
+                    logoutUser();
+                    setMenuOpen(false);
+                  }}
+                  className="btn-nav w-full flex justify-center items-center gap-1"
+                  aria-label="Cerrar sesión"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                    />
+                  </svg>
+                  Salir
+                </button>
+                <Link
+                  to="/checkout-session"
+                  className="btn-cart relative justify-center w-full"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 7H19M7 13L5.4 5M19 21a1 1 0 11-2 0 1 1 0 012 0zm-10 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                  </svg>
+                  <span className="btn-cart-quantity">{total}</span>
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link
+                  to="/register"
+                  className="btn-nav w-full text-center"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Crear Cuenta
+                </Link>
+                <Link
+                  to="/login"
+                  className="btn-nav w-full text-center"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Iniciar Sesión
+                </Link>
+              </>
+            )}
+          </div>
+        )}
       </nav>
     </header>
   );

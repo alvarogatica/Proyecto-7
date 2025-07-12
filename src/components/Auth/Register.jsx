@@ -1,17 +1,17 @@
-import React, { useContext, useState } from 'react'
-import UserContext from '../../contexts/user/UserContext'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useContext, useState } from "react";
+import UserContext from "../../contexts/user/UserContext";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
-  const ctx = useContext(UserContext)
+  const ctx = useContext(UserContext);
   const navigate = useNavigate();
   const { registerUser } = ctx;
 
-  const  [newUser, setNewUser] = useState({
+  const [newUser, setNewUser] = useState({
     username: "",
     email: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
   });
 
   const [errorMsg, setErrorMsg] = useState("");
@@ -20,32 +20,33 @@ const Register = () => {
     e.preventDefault();
     setNewUser({
       ...newUser,
-      [e.target.name]: e.target.value
-    })
-  }
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (newUser.password !== newUser.confirmPassword) {
-      return setErrorMsg("Contraseña de confirmación no coincide");
+      return setErrorMsg("La confirmación de la contraseña no coincide.");
     }
     const res = await registerUser(newUser);
-    if (res) {
-      navigate("/login");
-    } else {
-      return setErrorMsg("Error al registrar el usuario");
+    if (!res) {
+      setErrorMsg("Error al registrar el usuario. Intenta de nuevo.");
+      return;
     }
-  }
+    setErrorMsg("");
+    navigate("/login");
+  };
 
   return (
     <>
-      <section className="flex flex-col justify-center py-8 mx-auto">
+      <section className="flex flex-col justify-center py-8 mx-auto max-w-md">
         <h2 className="text-center text-3xl font-bold mt-8">Crea tu cuenta</h2>
-        <p className="mt-2 text-center text-sm">
+        <p className="mt-2 text-center text-sm text-gray-600">
           ¿Ya tienes cuenta? &nbsp;
           <Link
             to="/login"
-            className="font-medium text-brand-light-purple underline"
+            className="font-medium text-[#d9b8a6] hover:text-[#c2a08e] underline"
           >
             Inicia sesión
           </Link>
@@ -53,91 +54,87 @@ const Register = () => {
       </section>
 
       <section className="mt-8 px-4 mx-auto w-full max-w-md">
-        <div>
-          <form
-            onSubmit={(event) => {
-              handleSubmit(event);
-            }}
-            className="space-y-4"
-          >
-            <div>
-              <label htmlFor="username" className="form-label">
-                Nombre de usuario
-              </label>
-              <input
-                onChange={(event) => {
-                  handleChange(event);
-                }}
-                name="username"
-                type="text"
-                className="form-input"
-              />
-            </div>
+        <form onSubmit={handleSubmit} className="space-y-6" noValidate autoComplete="off">
+          <div>
+            <label htmlFor="username" className="form-label">
+              Nombre de usuario
+            </label>
+            <input
+              id="username"
+              name="username"
+              type="text"
+              value={newUser.username}
+              onChange={handleChange}
+              className="form-input"
+              placeholder="Tu nombre de usuario"
+              required
+              autoFocus
+            />
+          </div>
 
-            <div>
-              <label htmlFor="email" className="form-label">
-                Correo Electronico
-              </label>
-              <div className="mt-1">
-                <input
-                  onChange={(event) => {
-                    handleChange(event);
-                  }}
-                  name="email"
-                  type="email"
-                  className="form-input"
-                />
-              </div>
-            </div>
+          <div>
+            <label htmlFor="email" className="form-label">
+              Correo electrónico
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              value={newUser.email}
+              onChange={handleChange}
+              className="form-input"
+              placeholder="ejemplo@correo.com"
+              required
+            />
+          </div>
 
-            <div>
-              <label htmlFor="password" className="form-label">
-                Contrasena
-              </label>
-              <div className="mt-1">
-                <input
-                  onChange={(event) => {
-                    handleChange(event);
-                  }}
-                  name="password"
-                  type="password"
-                  required
-                  className="form-input"
-                />
-              </div>
-            </div>
+          <div>
+            <label htmlFor="password" className="form-label">
+              Contraseña
+            </label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              value={newUser.password}
+              onChange={handleChange}
+              className="form-input"
+              placeholder="••••••••"
+              required
+              minLength={6}
+            />
+          </div>
 
-            <div>
-              <label htmlFor="confirmPassword" className="form-label">
-                Confirma tu contrasena
-              </label>
-              <div className="mt-1">
-                <input
-                  onChange={(event) => {
-                    handleChange(event);
-                  }}
-                  name="confirmPassword"
-                  type="password"
-                  required
-                  className="form-input"
-                />
-              </div>
-            </div>
+          <div>
+            <label htmlFor="confirmPassword" className="form-label">
+              Confirma tu contraseña
+            </label>
+            <input
+              id="confirmPassword"
+              name="confirmPassword"
+              type="password"
+              value={newUser.confirmPassword}
+              onChange={handleChange}
+              className="form-input"
+              placeholder="••••••••"
+              required
+              minLength={6}
+            />
+          </div>
 
-            <div className="py-4">
-              <button type="submit" className="form-button">
-                Crear cuenta
-              </button>
-            </div>
+          <div>
+            <button type="submit" className="form-button w-full">
+              Crear cuenta
+            </button>
+          </div>
 
-            <div>
-              <p className="text-center text-red-800">{errorMsg}</p>
-            </div>
-          </form>
-        </div>
+          {errorMsg && (
+            <p className="text-center text-red-700 font-medium">{errorMsg}</p>
+          )}
+        </form>
       </section>
     </>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;

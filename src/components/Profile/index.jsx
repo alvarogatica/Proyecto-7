@@ -1,15 +1,10 @@
 import { useState, useContext, useEffect } from "react";
-
 import UserContext from "../../contexts/user/UserContext";
 
 export default function Profile() {
-
   const userCtx = useContext(UserContext);
-
   const { updateUser } = userCtx;
-
-  const { username, email, country, address, phone, zipcode } =
-    userCtx.currentUser;
+  const { username, email, country, address, phone, zipcode } = userCtx.currentUser;
 
   const [userForm, setUserForm] = useState({
     username: "",
@@ -21,7 +16,7 @@ export default function Profile() {
 
   useEffect(() => {
     const updateData = () => {
-      return setUserForm({
+      setUserForm({
         ...userForm,
         username,
         country,
@@ -43,7 +38,6 @@ export default function Profile() {
 
   const sendData = async (event) => {
     event.preventDefault();
-
     await updateUser(userForm);
   };
 
@@ -52,17 +46,13 @@ export default function Profile() {
       <div className="mx-auto py-4 px-8">
         <div className="space-y-16 ">
           <section>
-            <form
-              onSubmit={(e) => {
-                sendData(e);
-              }}
-            >
+            <form onSubmit={sendData}>
               <div className="">
                 <div className="px-4">
                   <div>
                     <h2 className="text-3xl font-bold mt-8">Tu perfil</h2>
                     <p className="mt-2 mb-8 text-sm">
-                      Edita las areas de tu perfil que desees. 😉
+                      Edita las áreas de tu perfil que desees. 😉
                     </p>
                   </div>
 
@@ -73,10 +63,9 @@ export default function Profile() {
                         type="text"
                         name="username"
                         value={userForm.username}
-                        onChange={(e) => {
-                          handleChange(e);
-                        }}
+                        onChange={handleChange}
                         className="form-input"
+                        placeholder="Ej: maria123"
                       />
                     </div>
 
@@ -87,9 +76,6 @@ export default function Profile() {
                         type="email"
                         name="email"
                         value={email}
-                        onChange={(e) => {
-                          handleChange(e);
-                        }}
                         className="form-input"
                       />
                     </div>
@@ -100,10 +86,9 @@ export default function Profile() {
                         type="text"
                         name="country"
                         value={userForm.country}
-                        onChange={(e) => {
-                          handleChange(e);
-                        }}
+                        onChange={handleChange}
                         className="form-input"
+                        placeholder="Ej: Chile"
                       />
                     </div>
 
@@ -115,10 +100,9 @@ export default function Profile() {
                         type="tel"
                         name="phone"
                         value={userForm.phone}
-                        onChange={(e) => {
-                          handleChange(e);
-                        }}
+                        onChange={handleChange}
                         className="form-input"
+                        placeholder="Ej: +56 9 1234 5678"
                       />
                     </div>
 
@@ -127,13 +111,12 @@ export default function Profile() {
                         <span>Código postal</span>
                       </label>
                       <input
-                        type="number"
+                        type="text"
                         name="zipcode"
                         value={userForm.zipcode}
-                        onChange={(e) => {
-                          handleChange(e);
-                        }}
+                        onChange={handleChange}
                         className="form-input"
+                        placeholder="Ej: 1234567"
                       />
                     </div>
 
@@ -143,10 +126,9 @@ export default function Profile() {
                         type="text"
                         name="address"
                         value={userForm.address}
-                        onChange={(e) => {
-                          handleChange(e);
-                        }}
+                        onChange={handleChange}
                         className="form-input"
+                        placeholder="Ej: Calle Falsa 123"
                       />
                     </div>
                   </div>

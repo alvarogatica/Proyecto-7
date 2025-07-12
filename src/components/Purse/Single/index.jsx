@@ -1,10 +1,11 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom"; // agrego useNavigate
 import { formatCLP } from "../../utils/formatCLP";
 import PurseContext from "../../../contexts/purse/PurseContext";
 import UserContext from "../../../contexts/user/UserContext";
 import { useContext, useEffect, useState } from "react";
 
 const SinglePurse = () => {
+  const navigate = useNavigate(); // <--- nuevo
   const [quantity, setQuantity] = useState(1);
   const location = useLocation();
   const { purse } = location?.state;
@@ -21,6 +22,7 @@ const SinglePurse = () => {
     setCurrentPurse(purse);
     getCart();
   }, []);
+
   const handleChange = (e) => {
     setQuantity(Number(e.target.value));
   };
@@ -58,6 +60,15 @@ const SinglePurse = () => {
 
   return (
     <main className="max-w-5xl mx-auto pt-16 pb-24 px-6">
+      {/* Botón Volver */}
+      <button
+        type="button"
+        onClick={() => navigate(-1)}
+        className="btn-nav mb-6"
+      >
+        &larr; Volver
+      </button>
+
       <div className="grid lg:grid-cols-2 gap-12">
         <section>
           <h1 className="text-4xl font-bold">{name}</h1>
@@ -71,9 +82,9 @@ const SinglePurse = () => {
                 Cantidad
               </label>
               <select
-              className="w-32 border border-grav-300 rounded-md p-2"
-              value={quantity}
-              onChange={handleChange}
+                className="w-32 border border-gray-300 rounded-md p-2"
+                value={quantity}
+                onChange={handleChange}
               >
                 {quantityOptions.map((q) => (
                   <option key={q} value={q}>
@@ -83,11 +94,11 @@ const SinglePurse = () => {
               </select>
 
               <button
-              type="submit"
-              className="btn-product mt-6"
-              disabled={quantity === 0}
+                type="submit"
+                className="btn-product mt-6"
+                disabled={quantity === 0}
               >
-                {cart.lenght ? "Modificar carrito" : "Agregar al carrito"}
+                {cart.length ? "Modificar carrito" : "Agregar al carrito"}
               </button>
             </form>
           )}
@@ -102,9 +113,10 @@ const SinglePurse = () => {
         </section>
 
         <figure>
-          <img src={img}
-          alt={description}
-          className="w-full h-auto object-cover rounded-lg shadow-md"
+          <img
+            src={img}
+            alt={description}
+            className="w-full h-auto object-cover rounded-lg shadow-md"
           />
         </figure>
       </div>

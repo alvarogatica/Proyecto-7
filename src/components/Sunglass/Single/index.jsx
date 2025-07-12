@@ -1,10 +1,11 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom"; // agrego useNavigate
 import { formatCLP } from "../../utils/formatCLP";
 import SunglassContext from "../../../contexts/sunglass/SunglassContext";
 import UserContext from "../../../contexts/user/UserContext";
 import { useContext, useEffect, useState } from "react";
 
 const SingleSunglass = () => {
+  const navigate = useNavigate(); // <--- nuevo
   const [quantity, setQuantity] = useState(1);
   const location = useLocation();
   const { sunglass } = location?.state;
@@ -21,6 +22,7 @@ const SingleSunglass = () => {
     setCurrentSunglass(sunglass);
     getCart();
   }, []);
+
   const handleChange = (e) => {
     setQuantity(Number(e.target.value));
   };
@@ -58,6 +60,15 @@ const SingleSunglass = () => {
 
   return (
     <main className="max-w-5xl mx-auto pt-16 pb-24 px-6">
+      {/* Botón Volver */}
+      <button
+        type="button"
+        onClick={() => navigate(-1)}
+        className="btn-nav mb-6"
+      >
+        &larr; Volver
+      </button>
+
       <div className="grid lg:grid-cols-2 gap-12">
         <section>
           <h1 className="text-4xl font-bold">{name}</h1>
@@ -71,7 +82,7 @@ const SingleSunglass = () => {
                 Cantidad
               </label>
               <select
-                className="w-32 border border-grav-300 rounded-md p-2"
+                className="w-32 border border-gray-300 rounded-md p-2"
                 value={quantity}
                 onChange={handleChange}
               >
@@ -87,7 +98,7 @@ const SingleSunglass = () => {
                 className="btn-product mt-6"
                 disabled={quantity === 0}
               >
-                {cart.lenght ? "Modificar carrito" : "Agregar al carrito"}
+                {cart.length ? "Modificar carrito" : "Agregar al carrito"}
               </button>
             </form>
           )}
