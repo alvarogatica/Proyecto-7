@@ -19,7 +19,7 @@ const SunglassState = (props) => {
 
   const [globalState, dispatch] = useReducer(SunglassReducer, initialState);
 
-  const getSunglass = async () => {
+  const getSunglasses = async () => {
     try {
       const res = await axiosClient.get("/sunglasses");
       dispatch({
@@ -43,7 +43,7 @@ const SunglassState = (props) => {
       value={{
         sunglasses: globalState.sunglasses,
         currentSunglass: globalState.currentSunglass,
-        getSunglass,
+        getSunglasses,
         setCurrentSunglass,
       }}
     >
