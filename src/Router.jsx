@@ -4,6 +4,9 @@ import Home from "./components/Home";
 import PurseState from "./contexts/purse/PurseState";
 import PurseList from "./components/Purse/List";
 import SinglePurse from "./components/Purse/Single";
+import SunglassState from "./contexts/sunglass/SunglassState";
+import SunglassList from "./components/Sunglass/List";
+import SingleSunglass from "./components/Sunglass/Single";
 import Register from "./components/Auth/Register";
 import Login from "./components/Auth/Login";
 import UserState from "./contexts/user/UserState";
@@ -19,27 +22,34 @@ const Router = () => {
     <>
       <UserState>
         <PurseState>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Layout />}>
-                <Route index element={<Home />} />
-                <Route path="register" element={<Register />} />
-                <Route path="login" element={<AuthRoute component={Login} />} />
-                <Route
-                  path="perfil"
-                  element={<PrivateRoute component={Profile} />}
-                />
-                <Route
-                  path="checkout-session"
-                  element={<PrivateRoute component={Checkout} />}
-                />
-                <Route path="purses" element={<PurseList />} />
-                <Route path="purses/:slug" element={<SinglePurse />} />
-                <Route path="success" element={<SuccessPage />} />
-                <Route path="cancel" element={<CancelPage />} />
-              </Route>
-            </Routes>
-          </BrowserRouter>
+          <SunglassState>
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<Layout />}>
+                  <Route index element={<Home />} />
+                  <Route path="register" element={<Register />} />
+                  <Route
+                    path="login"
+                    element={<AuthRoute component={Login} />}
+                  />
+                  <Route
+                    path="perfil"
+                    element={<PrivateRoute component={Profile} />}
+                  />
+                  <Route
+                    path="checkout-session"
+                    element={<PrivateRoute component={Checkout} />}
+                  />
+                  <Route path="purses" element={<PurseList />} />
+                  <Route path="purses/:slug" element={<SinglePurse />} />
+                  <Route path="sunglasses" element={<SunglassList />} />
+                  <Route path="sunglasses/:slug" element={<SingleSunglass />} />
+                  <Route path="success" element={<SuccessPage />} />
+                  <Route path="cancel" element={<CancelPage />} />
+                </Route>
+              </Routes>
+            </BrowserRouter>
+          </SunglassState>
         </PurseState>
       </UserState>
     </>

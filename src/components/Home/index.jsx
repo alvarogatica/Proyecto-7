@@ -13,7 +13,10 @@ const Home = () => {
         <section className="mt-16 mx-auto max-w-md">
           <article>
             <Link to="/purses" className="btn-product">
-              Ver productos
+              Ver carteras
+            </Link>
+            <Link to="/sunglasses" className="btn-product">
+            Ver anteojos
             </Link>
           </article>
         </section>

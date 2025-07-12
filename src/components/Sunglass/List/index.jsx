@@ -19,7 +19,7 @@ const SunglassList = () => {
             return (
               <div key={sunglass._id} className="border flex flex-col">
                 <div className="bg-gray-200">
-                  <Link to={`/purses/${sunglass.slug}`} state={{ sunglass }}>
+                  <Link to={`/sunglasses/${sunglass.slug}`} state={{ sunglass }}>
                     <img
                       src={sunglass.img}
                       alt={sunglass.description}
