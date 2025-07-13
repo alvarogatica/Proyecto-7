@@ -1,11 +1,11 @@
-import { Link, useLocation, useNavigate } from "react-router-dom"; // agrego useNavigate
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { formatCLP } from "../../utils/formatCLP";
 import PurseContext from "../../../contexts/purse/PurseContext";
 import UserContext from "../../../contexts/user/UserContext";
 import { useContext, useEffect, useState } from "react";
 
 const SinglePurse = () => {
-  const navigate = useNavigate(); // <--- nuevo
+  const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
   const location = useLocation();
   const { purse } = location?.state;
@@ -60,7 +60,6 @@ const SinglePurse = () => {
 
   return (
     <main className="max-w-5xl mx-auto pt-16 pb-24 px-6">
-      {/* Botón Volver */}
       <button
         type="button"
         onClick={() => navigate(-1)}

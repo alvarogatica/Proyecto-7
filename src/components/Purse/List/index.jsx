@@ -37,7 +37,7 @@ const PurseList = () => {
                 className="btn-product self-start"
               >
                 <ShoppingBag size={18} />
-                Explorar cartera
+                Ver cartera
               </Link>
             </div>
           </div>

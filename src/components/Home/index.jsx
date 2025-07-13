@@ -9,7 +9,7 @@ const Home = () => {
           urdupes.cl
         </h1>
         <p className="text-lg text-gray-600 mb-12 font-light">
-          Tu tienda de accesorios femeninos favorita inspirados en la elegancia
+          Tu tienda online de accesorios femeninos favorita, inspirados en la elegancia
           minimalista para tus looks del día a día
         </p>
         <section className="flex flex-col gap-8 w-full max-w-md mx-auto">

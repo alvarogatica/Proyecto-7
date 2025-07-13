@@ -37,14 +37,13 @@ export default function Header() {
     <header className="bg-[#fdf9f4]">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
-          {/* Logo */}
+          
           <div className="flex-shrink-0">
             <Link to="/" className="font-bold text-xl text-gray-900">
               urdupes.cl
             </Link>
           </div>
 
-          {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-4">
             <Link
               to="/purses"
@@ -111,7 +110,6 @@ export default function Header() {
             )}
           </div>
 
-          {/* Mobile menu button */}
           <div className="md:hidden">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
@@ -123,7 +121,6 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Mobile menu */}
         {menuOpen && (
           <div className="md:hidden pb-4 space-y-4 border-t border-gray-300">
             <Link

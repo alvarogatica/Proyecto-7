@@ -38,7 +38,7 @@ const SunglassList = () => {
                 state={{ sunglass }}
                 className="btn-product text-center"
               >
-                Ver detalle
+                Ver anteojos
               </Link>
             </div>
           </div>

@@ -14,7 +14,7 @@ const Footer = () => {
           </button>
         </div>
         <p>&copy; 2025</p>
-        <p>Tienda electrónica de accesorios femeninos</p>
+        <p>Tienda online de accesorios femeninos</p>
       </div>
     </footer>
   );
