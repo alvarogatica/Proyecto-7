@@ -1,12 +1,12 @@
 # **urdupes.cl**
 
 **LINKS FRONTEND PROD/DEV:**
-https://urdupescl.vercel.app/
-https://github.com/alvarogatica/Proyecto-7.git
+- https://urdupescl.vercel.app/
+- https://github.com/alvarogatica/Proyecto-7.git
 
 **LINKS BACKEND PROD/DEV:**
-https://urdupescl.onrender.com/
-https://github.com/alvarogatica/Proyecto_modulo_6.git
+- https://urdupescl.onrender.com/
+- https://github.com/alvarogatica/Proyecto_modulo_6.git
 
 
 Bienvenido a **urdupes.cl**, una tienda online de accesorios femeninos inspirada en la elegancia minimalista para complementar los looks del día a día. Este proyecto corresponde al **frontend** desarrollado con **React** y **Vite**.
