@@ -30,6 +30,14 @@ Bienvenido a **urdupes.cl**, una tienda online de accesorios femeninos inspirada
 - **Páginas de éxito y cancelación**: Mensajes amigables según el resultado de la compra.
 - **Diseño responsive**: Se adapta a dispositivos móviles y escritorio.
 
+## 📂 Estructura de Carpetas:
+
+<img width="220" height="463" alt="image" src="https://github.com/user-attachments/assets/3067f803-4f1f-4831-988f-d8edc86140c9" /> <img width="220" height="361" alt="image" src="https://github.com/user-attachments/assets/9a5d1c0c-a6a1-476b-a797-edb9705493b9" /> <img width="220" height="419" alt="image" src="https://github.com/user-attachments/assets/315e12aa-016f-4284-abc2-ae1df74d9091" /> <img width="220" height="192" alt="image" src="https://github.com/user-attachments/assets/b69fbe3c-b01a-45a0-a520-d8b962258ae4" />
+
+
+
+
+
 ## ⚙️ Cómo ejecutar el proyecto en local
 
 Clona el repositorio, instala dependencias y configura la variable de entorno con la URL de tu backend.
