@@ -15,19 +15,22 @@ const PurseState = (props) => {
       description: "",
       slug: "",
     },
+    loading: false,
   };
 
   const [globalState, dispatch] = useReducer(PurseReducer, initialState);
 
   const getPurses = async () => {
     try {
+      dispatch({ type: "CARGANDO_CARTERAS" });
       const res = await axiosClient.get("/purses");
       dispatch({
-        type: "Obtener_Carteras",
+        type: "OBTENER_CARTERAS",
         payload: res.data.purses,
       });
     } catch (error) {
       console.log(error);
+      dispatch({ type: "OBTENER_CARTERAS", payload: [] });
     }
   };
 
@@ -43,6 +46,7 @@ const PurseState = (props) => {
       value={{
         purses: globalState.purses,
         currentPurse: globalState.currentPurse,
+        loading: globalState.loading,
         getPurses,
         setCurrentPurse,
       }}

@@ -15,19 +15,22 @@ const SunglassState = (props) => {
       description: "",
       slug: "",
     },
+    loading: false,
   };
 
   const [globalState, dispatch] = useReducer(SunglassReducer, initialState);
 
   const getSunglasses = async () => {
     try {
+      dispatch({ type: "CARGANDO_ANTEOJOS" });
       const res = await axiosClient.get("/sunglasses");
       dispatch({
-        type: "Obtener_Anteojos",
+        type: "OBTENER_ANTEOJOS",
         payload: res.data.sunglasses,
       });
     } catch (error) {
       console.log(error);
+      dispatch({ type: "OBTENER_ANTEOJOS", payload: [] });
     }
   };
 
@@ -43,6 +46,7 @@ const SunglassState = (props) => {
       value={{
         sunglasses: globalState.sunglasses,
         currentSunglass: globalState.currentSunglass,
+        loading: globalState.loading,
         getSunglasses,
         setCurrentSunglass,
       }}
