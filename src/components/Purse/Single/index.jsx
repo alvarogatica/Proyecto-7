@@ -23,12 +23,18 @@ const SinglePurse = () => {
     getCart();
   }, []);
 
-  const handleChange = (e) => {
-    setQuantity(Number(e.target.value));
+  const incrementQuantity = () => {
+    setQuantity((prev) => prev + 1);
   };
+
+  const decrementQuantity = () => {
+    setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (quantity === 0) return;
+
     const item = {
       priceID: purse.priceID,
       name: purse.name,
@@ -55,8 +61,8 @@ const SinglePurse = () => {
   };
 
   if (!purse) return null;
+
   const { name, description, img, price } = purse;
-  const quantityOptions = [0, 1, 2, 3, 4, 5];
 
   return (
     <main className="max-w-5xl mx-auto pt-16 pb-24 px-6">
@@ -72,40 +78,60 @@ const SinglePurse = () => {
         <section>
           <h1 className="text-4xl font-bold">{name}</h1>
           <p className="text-gray-600 mt-4">{description}</p>
-          <p className="mt-4  text-xl font-semibold">
+          <p className="mt-4 text-xl font-semibold">
             Precio: {formatCLP(price)}
           </p>
+
           {authStatus && (
             <form onSubmit={handleSubmit} className="mt-8">
               <label className="block mb-2 font-medium text-gray-700">
                 Cantidad
               </label>
-              <select
-                className="w-32 border border-gray-300 rounded-md p-2"
-                value={quantity}
-                onChange={handleChange}
-              >
-                {quantityOptions.map((q) => (
-                  <option key={q} value={q}>
-                    {q}
-                  </option>
-                ))}
-              </select>
 
-              <button
-                type="submit"
-                className="btn-product mt-6"
-                disabled={quantity === 0}
-              >
-                {cart.length ? "Modificar carrito" : "Agregar al carrito"}
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={decrementQuantity}
+                  className="btn-quantity"
+                  aria-label="Disminuir cantidad"
+                >
+                  –
+                </button>
+                <span className="w-8 text-center font-semibold text-gray-900">
+                  {quantity}
+                </span>
+                <button
+                  type="button"
+                  onClick={incrementQuantity}
+                  className="btn-quantity"
+                  aria-label="Aumentar cantidad"
+                >
+                  +
+                </button>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4 mt-6">
+                <button
+                  type="submit"
+                  className="btn-product flex-1"
+                  disabled={quantity === 0}
+                >
+                  {cart.length ? "✅ Cantidad actualizada" : "🛒 Agregar al carrito"}
+                </button>
+
+                <Link to="/checkout-session" className="flex-1">
+                  <button type="button" className="btn-nav w-full">
+                    Ver carrito
+                  </button>
+                </Link>
+              </div>
             </form>
           )}
 
           {!authStatus && (
             <Link to="/login">
               <button className="btn-product mt-6">
-                Registrate para comprar
+                Regístrate para comprar
               </button>
             </Link>
           )}
