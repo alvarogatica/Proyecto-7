@@ -32,7 +32,7 @@ Bienvenido a **urdupes.cl**, una tienda online de accesorios femeninos inspirada
 
 ## 📂 Estructura de Carpetas:
 
-<img width="247" height="463" alt="image" src="https://github.com/user-attachments/assets/3067f803-4f1f-4831-988f-d8edc86140c9" /> <img width="256" height="361" alt="image" src="https://github.com/user-attachments/assets/9a5d1c0c-a6a1-476b-a797-edb9705493b9" /> <img width="253" height="419" alt="image" src="https://github.com/user-attachments/assets/315e12aa-016f-4284-abc2-ae1df74d9091" /> <img width="236" height="192" alt="image" src="https://github.com/user-attachments/assets/b69fbe3c-b01a-45a0-a520-d8b962258ae4" />
+<img width="220" height="463" alt="image" src="https://github.com/user-attachments/assets/3067f803-4f1f-4831-988f-d8edc86140c9" /> <img width="220" height="361" alt="image" src="https://github.com/user-attachments/assets/9a5d1c0c-a6a1-476b-a797-edb9705493b9" /> <img width="220" height="419" alt="image" src="https://github.com/user-attachments/assets/315e12aa-016f-4284-abc2-ae1df74d9091" /> <img width="220" height="192" alt="image" src="https://github.com/user-attachments/assets/b69fbe3c-b01a-45a0-a520-d8b962258ae4" />
 
 
 
