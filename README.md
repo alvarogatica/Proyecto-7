@@ -1,10 +1,10 @@
 # urdupes.cl
 
-Links Frontend PROD/DEV:
+**LINKS FRONTEND PROD/DEV:**
 https://urdupescl.vercel.app/
 https://github.com/alvarogatica/Proyecto-7.git
 
-Links Backend prod/dev:
+**LINKS BACKEND PROD/DEV:**
 https://urdupescl.onrender.com/
 https://github.com/alvarogatica/Proyecto_modulo_6.git
 
