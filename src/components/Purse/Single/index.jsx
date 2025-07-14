@@ -116,7 +116,7 @@ const SinglePurse = () => {
                   className="btn-product flex-1"
                   disabled={quantity === 0}
                 >
-                  {cart.length ? "✅ Cantidad actualizada" : "🛒 Agregar al carrito"}
+                  {cart.length ? "✅ Modificar cantidad" : "🛒 Agregar al carrito"}
                 </button>
 
                 <Link to="/checkout-session" className="flex-1">
