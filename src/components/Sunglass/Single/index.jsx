@@ -20,6 +20,7 @@ const SingleSunglass = () => {
       return;
     }
     setCurrentSunglass(sunglass);
+    setQuantity(1);
     getCart();
   }, []);
 
@@ -63,6 +64,8 @@ const SingleSunglass = () => {
   if (!sunglass) return null;
 
   const { name, description, img, price } = sunglass;
+
+  const isInCart = cart.some((el) => el.priceID === sunglass.priceID);
 
   return (
     <main className="max-w-5xl mx-auto pt-16 pb-24 px-6">
@@ -116,7 +119,7 @@ const SingleSunglass = () => {
                   className="btn-product flex-1"
                   disabled={quantity === 0}
                 >
-                  {cart.length ? "✅ Modificar cantidad" : "🛒 Agregar al carrito"}
+                  {isInCart ? "✅ Modificar cantidad" : "🛒 Agregar al carrito"}
                 </button>
 
                 <Link to="/checkout-session" className="flex-1">
