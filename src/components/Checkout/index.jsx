@@ -59,7 +59,6 @@ export default function Checkout() {
 
   return (
     <div className="max-w-4xl mx-4 py-8 md:mx-auto">
-      {/* Botón Volver */}
       <button
         type="button"
         onClick={() => navigate(-1)}
