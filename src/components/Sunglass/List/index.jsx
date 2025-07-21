@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import SunglassContext from "../../../contexts/sunglass/SunglassContext";
 import { Link } from "react-router-dom";
+import { Glasses } from "lucide-react";
 
 const SunglassList = () => {
   const { sunglasses, getSunglasses, loading } = useContext(SunglassContext);
@@ -62,8 +63,9 @@ const SunglassList = () => {
               <Link
                 to={`/sunglasses/${sunglass.slug}`}
                 state={{ sunglass }}
-                className="btn-product text-center"
+                className="btn-product text-center inline-flex items-center justify-center gap-2"
               >
+                <Glasses size={18} />
                 Ver anteojos
               </Link>
             </div>

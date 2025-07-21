@@ -38,16 +38,16 @@ const PurseList = () => {
   }
 
   return (
-    <section className="max-w-7xl mx-auto py-16 px-4 grid grid-cols-1 gap-y-8 gap-x-12 sm:grid-cols-2 lg:grid-cols-3">
+    <section className="max-w-7xl mx-auto py-16 px-8 grid grid-cols-1 gap-y-8 gap-x-12 sm:grid-cols-2 lg:grid-cols-3">
       {purses.length === 0 ? (
-        <p className="text-center text-gray-500">
+        <p className="text-gray-500 text-center">
           No tenemos carteras disponibles por ahora, ¡vuelve pronto!
         </p>
       ) : (
         purses.map((purse) => (
           <div
             key={purse._id}
-            className="border rounded-2xl overflow-hidden shadow-sm bg-white flex flex-col transition-transform duration-300 hover:shadow-md hover:scale-105"
+            className="border border-gray-200 rounded-2xl overflow-hidden shadow-md flex flex-col"
           >
             <Link to={`/purses/${purse.slug}`} state={{ purse }}>
               <img
@@ -56,13 +56,16 @@ const PurseList = () => {
                 className="w-full object-center object-cover h-80"
               />
             </Link>
-            <div className="flex-1 p-6 flex flex-col gap-4">
-              <h3 className="text-xl font-semibold text-gray-900">{purse.name}</h3>
-              <p className="text-gray-500 text-sm flex-1">{purse.description}</p>
+
+            <div className="flex-1 p-6 flex flex-col justify-between">
+              <div>
+                <h3 className="text-xl font-semibold mb-2">{purse.name}</h3>
+                <p className="text-gray-600 mb-6">{purse.description}</p>
+              </div>
               <Link
                 to={`/purses/${purse.slug}`}
                 state={{ purse }}
-                className="btn-product self-start"
+                className="btn-product text-center inline-flex items-center justify-center gap-2"
               >
                 <ShoppingBag size={18} />
                 Ver cartera
